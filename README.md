@@ -5,7 +5,7 @@ favorite tools for building web apps.
 
 ## Usage
 
-```rails new my_app -m https://raw.github.com/terriblelabs/kickoff/master/template.rb```
+```rails new my_app --skip-test-unit -m https://raw.github.com/alxjrvs/kickoff/master/template.rb```
 
 ## Features
 
@@ -30,7 +30,7 @@ Development tools:
 
 Testing tools:
 
-* RSpec
+* Minitest
 * Guard
 * FactoryGirl
 * ffaker
