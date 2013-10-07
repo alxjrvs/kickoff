@@ -18,7 +18,6 @@ if yes?('Do you want to use Devise?')
   options[:user_password] = ask_with_default 'Password', 'password'
 end
 
-ruby '2.0.0'
 
 gem 'airbrake'
 gem 'devise' if options[:devise_model]
@@ -175,6 +174,14 @@ CODE
 gsub_file 'app/assets/stylesheets/application.css', /require_tree \.$/, 'require screen'
 
 gsub_file 'config/initializers/secret_token.rb', /= '.*?'/, %(= ENV['SECRET_TOKEN'] || "#{SecureRandom.hex(20)}")
+
+insert_into_file 'Gemfile', after: 'source \'https://rubygems.org\'' do
+<<-CODE
+  gem 'rails', '4.0.0'
+
+  ruby '2.0.0'
+CODE
+end
 
 insert_into_file 'app/helpers/application_helper.rb', after: 'module ApplicationHelper\n' do
 <<-CODE
