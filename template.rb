@@ -94,11 +94,19 @@ end
 
 
 # enable simple factory girl syntax (create, build) in minitest and cucumber
-create_file 'test/support/factory_girl.rb', <<-CODE
-class MiniTest::Rails::ActiveSupport::TestCase
+insert_into_file 'test/test_helper.rb', after: 'class ActiveSupport::TestCase\n' do
+<<-CODE
   include FactoryGirl::Syntax::Methods
-end
 CODE
+end
+
+insert_into_file 'test/test_helper.rb', after: 'require "minitest/rails"\n' do
+<<-CODE
+  require "minitest/pride"
+CODE
+end
+
+gsub_file('test/test_helper.rb', "fixtures :all")
 
 
 # configure sendgrid for heroku
@@ -202,12 +210,14 @@ insert_into_file 'app/controllers/application_controller.rb', before: /^end$/ do
 CODE
 end
 
+
 rake 'db:migrate'
 rake 'db:seed'
 
 remove_file 'README.rdoc'
 remove_file 'public/index.html'
 remove_file 'app/assets/images/rails.png'
+remove_dir 'test/fixtures'
 
 git :init
 git add: '.'
