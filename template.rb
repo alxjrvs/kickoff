@@ -176,9 +176,8 @@ gsub_file 'config/initializers/secret_token.rb', /= '.*?'/, %(= ENV['SECRET_TOKE
 
 insert_into_file 'Gemfile', after: 'source \'https://rubygems.org\'' do
 <<-CODE
-  gem 'rails', '4.0.0'
-
-  ruby '2.0.0'
+\n
+ruby '2.0.0'
 CODE
 end
 
