@@ -18,7 +18,6 @@ if yes?('Do you want to use Devise?')
   options[:user_password] = ask_with_default 'Password', 'password'
 end
 
-
 gem 'airbrake'
 gem 'devise' if options[:devise_model]
 gem 'haml'
@@ -30,7 +29,7 @@ gem 'stamp'
 
 gem 'zurb-foundation'
 
-group :production do
+gem_group :production do
   gem 'rails_12factor'
 end
 
