@@ -60,7 +60,7 @@ gem_group :test do
   gem 'valid_attribute'
 end
 
-bundle install
+run "bundle install"
 # configure newrelic for heroku
 # TODO: this link is borked
 # get 'https://raw.github.com/gist/2253296/newrelic.yml', 'config/newrelic.yml'
